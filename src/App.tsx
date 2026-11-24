@@ -1,15 +1,20 @@
 import { useState } from "react";
 import Card from "./Card";
 import CardDeck from "./lib/CardDeck";
+import PokerHand from "./lib/PokerHand";
 import type CardClass from "./lib/Card";
 
 const App = () => {
   const [cards, setCards] = useState<CardClass[]>([]);
+  const [outcome, setOutcome] = useState("");
 
   const dealCards = () => {
     const deck = new CardDeck();
     const newCards = deck.getCards(5);
     setCards(newCards);
+
+    const hand = new PokerHand(newCards);
+    setOutcome(hand.getOutcome());
   };
 
   if (cards.length === 0) {
@@ -26,6 +31,7 @@ const App = () => {
         <Card rank={cards[3].rank} suit={cards[3].suit} />
         <Card rank={cards[4].rank} suit={cards[4].suit} />
       </div>
+      <p>{outcome}</p>
     </>
   );
 };
