@@ -3,6 +3,7 @@ import Card from "./Card";
 import CardDeck from "./lib/CardDeck";
 import PokerHand from "./lib/PokerHand";
 import type CardClass from "./lib/Card";
+import "./App.css";
 
 const App = () => {
   const [cards, setCards] = useState<CardClass[]>([]);
@@ -18,12 +19,18 @@ const App = () => {
   };
 
   if (cards.length === 0) {
-    return <button onClick={dealCards}>Раздать карты</button>;
+    return (
+      <button className="btn" onClick={dealCards}>
+        Раздать карты
+      </button>
+    );
   }
 
   return (
     <>
-      <button onClick={dealCards}>Раздать карты</button>
+      <button className="btn" onClick={dealCards}>
+        Раздать карты
+      </button>
       <div className="playingCards faceImages">
         <Card rank={cards[0].rank} suit={cards[0].suit} />
         <Card rank={cards[1].rank} suit={cards[1].suit} />
